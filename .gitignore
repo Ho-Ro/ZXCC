@@ -7,8 +7,13 @@ config.status
 
 # generated files
 Makefile
+configure
 config.h
 libtool
+*.in
+aclocal.m4
+description-pak
+doc-pak/*
 *.o
 *~
 
@@ -23,3 +28,6 @@ bin/zxobjtohex
 # libraries
 cpmio/lib/libcpmio.a
 cpmredir/lib/libcpmredir.a
+
+# debian packages
+*.deb
