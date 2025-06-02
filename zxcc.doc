@@ -105,6 +105,9 @@ Using zxcc
    zxas
           The equivalent of ZAS.COM.
 
+   zx80as
+          The equivalent of Z80AS.COM.
+
    zxlink
           The equivalent of LINK.COM.
 
@@ -203,7 +206,7 @@ Acknowledgements
 
     John Elliott, 28 March 2003
 
-References
+Verweise
 
    1. http://www.nenie.org/cpcip/index.html#zmac
    2. http://www.hitech.com.au/
