@@ -24,3 +24,8 @@ bin/zxobjtohex
 # libraries
 cpmio/lib/libcpmio.a
 cpmredir/lib/libcpmredir.a
+
+# checkinstall
+description-pak
+doc-pak
+zxcc_*.deb
