@@ -105,6 +105,9 @@ Using zxcc
    zxas
           The equivalent of ZAS.COM.
 
+   zx80as
+          The equivalent of Z80AS.COM.
+
    zxlink
           The equivalent of LINK.COM.
 

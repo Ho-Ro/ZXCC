@@ -7,4 +7,4 @@ pkgdata_DATA = zxcc.doc
 ACLOCAL_AMFLAGS=-I m4
 
 zxcc.doc:	$(srcdir)/zxcc.html
-	lynx -dump $(srcdir)/zxcc.html > zxcc.doc
+	LANG=C lynx -dump $(srcdir)/zxcc.html > zxcc.doc
