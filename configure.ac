@@ -95,6 +95,6 @@ then
 fi
 LIBS="-lcpmredir $LIBS"
 
-AC_CONFIG_FILES([Makefile bin/Makefile Z80/Makefile ])
+AC_CONFIG_FILES([Makefile bin/Makefile CPM.COM/Makefile PLI80/Makefile Z80/Makefile ])
 AC_OUTPUT
 

@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS= . @LSUBDIRS@ Z80 bin
+SUBDIRS= . @LSUBDIRS@ CPM.COM PLI80 Z80 bin
 EXTRA_DIST= $(srcdir)/config/* $(srcdir)/zxcc.doc $(srcdir)/zxcc.html
 
 ACLOCAL_AMFLAGS=-I m4

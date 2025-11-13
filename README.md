@@ -215,9 +215,35 @@ block - resolving issue #40.
 [^1]: The most recent Zilog Z80 Family CPU User Manual (UM008001-1000)
 can be found at http://www.zilog.com/docs/z80/z80cpu_um.pdf
 
-[^2]: You'll find the final version of yaze-ag 2.51.3 (as curated by
-Andreas Gerlich) at https://agl.yaze-ag.de/
+[^2]: You'll find the final version of yaze-ag 2.51.3
+(as curated by Andreas Gerlich) at https://agl.yaze-ag.de/
 
 --
 
 Tony Nicholson, Sunday 10-Aug-2025
+
+## Update for the Linux build
+
+I've modified the Linux build tool, included the CP/M tools that are needed to
+build the CP/M bios and the system files, and created these support scripts:
+
+* 0_SETUP.sh
+
+  Enter CPM.COM and create Makefile.am with all *.com files in the directory.
+  These `*.com` files will be added to the `zxcc_*.deb` package by checkinstall.
+
+* 1_CONFIGURE.sh
+
+  Configure the build for the installation into prefix `/usr/local`.
+
+* 2_MKDEB.sh
+
+  Create the Debian package `zxcc_*.deb` using the tool `checkinstall`.
+
+* 3_MKDEBINSTALL.sh
+
+  Install the latest `zxcc_*.deb`.
+
+--
+
+Martin Homuth-Rosemann, 14-Nov-2025

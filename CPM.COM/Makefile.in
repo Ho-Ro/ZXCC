@@ -90,7 +90,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = Z80
+subdir = CPM.COM
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
@@ -249,9 +249,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-noinst_DATA = bios.bin
-EXTRA_DIST = bios.bin bios.zsm
-CLEANFILES = bios.lis
+noinst_DATA = *.com
 all: all-am
 
 .SUFFIXES:
@@ -264,9 +262,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu Z80/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu CPM.COM/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu Z80/Makefile
+	  $(AUTOMAKE) --gnu CPM.COM/Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
 	  *config.status*) \
@@ -355,7 +353,6 @@ install-strip:
 mostlyclean-generic:
 
 clean-generic:
-	-$(am__rm_f) $(CLEANFILES)
 
 distclean-generic:
 	-$(am__rm_f) $(CONFIG_CLEAN_FILES)
@@ -448,17 +445,42 @@ uninstall-am: uninstall-local
 .PRECIOUS: Makefile
 
 
-bios.bin:	bios.zsm
-	z80asm -fb -l bios.zsm
-
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(libdir)/cpm/bin80
 	$(mkinstalldirs) $(DESTDIR)$(libdir)/cpm/lib80
 	$(mkinstalldirs) $(DESTDIR)$(libdir)/cpm/include80
-	$(INSTALL_DATA) $(srcdir)/bios.bin $(DESTDIR)$(libdir)/cpm/bin80/bios.bin
+	$(INSTALL_DATA) $(srcdir)/dump.com $(DESTDIR)$(libdir)/cpm/bin80/dump.com
+	$(INSTALL_DATA) $(srcdir)/gencpm3.com $(DESTDIR)$(libdir)/cpm/bin80/gencpm3.com
+	$(INSTALL_DATA) $(srcdir)/hexcom.com $(DESTDIR)$(libdir)/cpm/bin80/hexcom.com
+	$(INSTALL_DATA) $(srcdir)/l80.com $(DESTDIR)$(libdir)/cpm/bin80/l80.com
+	$(INSTALL_DATA) $(srcdir)/link.com $(DESTDIR)$(libdir)/cpm/bin80/link.com
+	$(INSTALL_DATA) $(srcdir)/load.com $(DESTDIR)$(libdir)/cpm/bin80/load.com
+	$(INSTALL_DATA) $(srcdir)/m80.com $(DESTDIR)$(libdir)/cpm/bin80/m80.com
+	$(INSTALL_DATA) $(srcdir)/mac.com $(DESTDIR)$(libdir)/cpm/bin80/mac.com
+	$(INSTALL_DATA) $(srcdir)/mload.com $(DESTDIR)$(libdir)/cpm/bin80/mload.com
+	$(INSTALL_DATA) $(srcdir)/pip.com $(DESTDIR)$(libdir)/cpm/bin80/pip.com
+	$(INSTALL_DATA) $(srcdir)/rmac.com $(DESTDIR)$(libdir)/cpm/bin80/rmac.com
+	$(INSTALL_DATA) $(srcdir)/slrnk.com $(DESTDIR)$(libdir)/cpm/bin80/slrnk.com
+	$(INSTALL_DATA) $(srcdir)/z80asm.com $(DESTDIR)$(libdir)/cpm/bin80/z80asm.com
+	$(INSTALL_DATA) $(srcdir)/z80dis.com $(DESTDIR)$(libdir)/cpm/bin80/z80dis.com
+	$(INSTALL_DATA) $(srcdir)/zsm4.com $(DESTDIR)$(libdir)/cpm/bin80/zsm4.com
 
 uninstall-local:
-	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/bios.bin	
+	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/dump.com
+	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/gencpm3.com
+	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/hexcom.com
+	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/l80.com
+	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/link.com
+	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/load.com
+	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/m80.com
+	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/mac.com
+	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/mload.com
+	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/pip.com
+	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/rmac.com
+	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/slrnk.com
+	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/z80asm.com
+	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/z80dis.com
+	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/zsm4.com
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

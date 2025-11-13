@@ -90,7 +90,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = Z80
+subdir = PLI80
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
@@ -249,9 +249,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-noinst_DATA = bios.bin
-EXTRA_DIST = bios.bin bios.zsm
-CLEANFILES = bios.lis
+noinst_DATA = pli.com pli[0-2].ovl
 all: all-am
 
 .SUFFIXES:
@@ -264,9 +262,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu Z80/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu PLI80/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu Z80/Makefile
+	  $(AUTOMAKE) --gnu PLI80/Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
 	  *config.status*) \
@@ -355,7 +353,6 @@ install-strip:
 mostlyclean-generic:
 
 clean-generic:
-	-$(am__rm_f) $(CLEANFILES)
 
 distclean-generic:
 	-$(am__rm_f) $(CONFIG_CLEAN_FILES)
@@ -448,17 +445,20 @@ uninstall-am: uninstall-local
 .PRECIOUS: Makefile
 
 
-bios.bin:	bios.zsm
-	z80asm -fb -l bios.zsm
-
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(libdir)/cpm/bin80
 	$(mkinstalldirs) $(DESTDIR)$(libdir)/cpm/lib80
 	$(mkinstalldirs) $(DESTDIR)$(libdir)/cpm/include80
-	$(INSTALL_DATA) $(srcdir)/bios.bin $(DESTDIR)$(libdir)/cpm/bin80/bios.bin
+	$(INSTALL_DATA) $(srcdir)/pli.com $(DESTDIR)$(libdir)/cpm/bin80/pli.com
+	$(INSTALL_DATA) $(srcdir)/pli0.ovl $(DESTDIR)$(libdir)/cpm/bin80/pli0.ovl
+	$(INSTALL_DATA) $(srcdir)/pli1.ovl $(DESTDIR)$(libdir)/cpm/bin80/pli1.ovl
+	$(INSTALL_DATA) $(srcdir)/pli2.ovl $(DESTDIR)$(libdir)/cpm/bin80/pli2.ovl
+	$(INSTALL_DATA) $(srcdir)/plilib.irl $(DESTDIR)$(libdir)/cpm/lib80/plilib.irl
 
 uninstall-local:
-	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/bios.bin	
+	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/pli.com
+	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/pli[0-2].ovl
+	$(RM) $(DESTDIR)$(libdir)/cpm/lib80/plilib.irl
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "John Elliott's CP/M 2/3 emulator for crosscompiling and running CP/M tools under MS Windows (command-line and Cygwin) as well as Linux/Unix/macOS." > description-pak
+echo "John Elliott's CP/M 2/3 emulator for crosscompiling and running CP/M tools under Linux" > description-pak
 
 mkdir -p doc-pak
 cp AUTHORS  ChangeLog  COPYING  README.md  zxcc.doc  zxcc.html doc-pak
