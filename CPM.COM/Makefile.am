@@ -18,6 +18,7 @@ install-data-local:
 	$(INSTALL_DATA) $(srcdir)/slrnk.com $(DESTDIR)$(libdir)/cpm/bin80/slrnk.com
 	$(INSTALL_DATA) $(srcdir)/z80asm.com $(DESTDIR)$(libdir)/cpm/bin80/z80asm.com
 	$(INSTALL_DATA) $(srcdir)/z80dis.com $(DESTDIR)$(libdir)/cpm/bin80/z80dis.com
+	$(INSTALL_DATA) $(srcdir)/zmac.com $(DESTDIR)$(libdir)/cpm/bin80/zmac.com
 	$(INSTALL_DATA) $(srcdir)/zsm4.com $(DESTDIR)$(libdir)/cpm/bin80/zsm4.com
 
 uninstall-local:
@@ -35,5 +36,6 @@ uninstall-local:
 	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/slrnk.com
 	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/z80asm.com
 	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/z80dis.com
+	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/zmac.com
 	$(RM) $(DESTDIR)$(libdir)/cpm/bin80/zsm4.com
 
