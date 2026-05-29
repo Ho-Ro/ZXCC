@@ -17,6 +17,7 @@ bin/zx80as
 bin/zxas
 bin/zxc
 bin/zxcc
+bin/zxcpm
 bin/zxlibr
 bin/zxlink
 bin/zxobjtohex
@@ -29,3 +30,10 @@ cpmredir/lib/libcpmredir.a
 description-pak
 doc-pak
 zxcc_*.deb
+
+# development files
+*.bak
+*.new
+*.old
+*.orig
+*.work
