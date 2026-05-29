@@ -26,7 +26,6 @@ int main(int argc, char **argv) {
             strcat( cmdbuf, " -" );
 	    strcat( cmdbuf, argv[n] );
 	}
-	puts( cmdbuf );
 	return system( cmdbuf );
     }
 }
