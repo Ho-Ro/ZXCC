@@ -92,7 +92,7 @@ build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = zxcc$(EXEEXT) zxc$(EXEEXT) zxas$(EXEEXT) \
 	zx80as$(EXEEXT) zxlibr$(EXEEXT) zxlink$(EXEEXT) \
-	zxobjtohex$(EXEEXT)
+	zxobjtohex$(EXEEXT) zxcpm$(EXEEXT)
 subdir = bin
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
@@ -125,6 +125,9 @@ am_zxcc_OBJECTS = zxbdos.$(OBJEXT) zxcbdos.$(OBJEXT) zxdbdos.$(OBJEXT) \
 	zxcc.$(OBJEXT) z80.$(OBJEXT)
 zxcc_OBJECTS = $(am_zxcc_OBJECTS)
 zxcc_LDADD = $(LDADD)
+am_zxcpm_OBJECTS = zxcpm.$(OBJEXT)
+zxcpm_OBJECTS = $(am_zxcpm_OBJECTS)
+zxcpm_LDADD = $(LDADD)
 am_zxlibr_OBJECTS = zxlibr.$(OBJEXT)
 zxlibr_OBJECTS = $(am_zxlibr_OBJECTS)
 zxlibr_LDADD = $(LDADD)
@@ -152,8 +155,9 @@ am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/z80.Po ./$(DEPDIR)/zx80as.Po \
 	./$(DEPDIR)/zxas.Po ./$(DEPDIR)/zxbdos.Po ./$(DEPDIR)/zxc.Po \
 	./$(DEPDIR)/zxcbdos.Po ./$(DEPDIR)/zxcc.Po \
-	./$(DEPDIR)/zxdbdos.Po ./$(DEPDIR)/zxlibr.Po \
-	./$(DEPDIR)/zxlink.Po ./$(DEPDIR)/zxobjtohex.Po
+	./$(DEPDIR)/zxcpm.Po ./$(DEPDIR)/zxdbdos.Po \
+	./$(DEPDIR)/zxlibr.Po ./$(DEPDIR)/zxlink.Po \
+	./$(DEPDIR)/zxobjtohex.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -174,10 +178,10 @@ am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
 SOURCES = $(zx80as_SOURCES) $(zxas_SOURCES) $(zxc_SOURCES) \
-	$(zxcc_SOURCES) $(zxlibr_SOURCES) zxlink.c \
+	$(zxcc_SOURCES) $(zxcpm_SOURCES) $(zxlibr_SOURCES) zxlink.c \
 	$(zxobjtohex_SOURCES)
 DIST_SOURCES = $(zx80as_SOURCES) $(zxas_SOURCES) $(zxc_SOURCES) \
-	$(zxcc_SOURCES) $(zxlibr_SOURCES) zxlink.c \
+	$(zxcc_SOURCES) $(zxcpm_SOURCES) $(zxlibr_SOURCES) zxlink.c \
 	$(zxobjtohex_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
@@ -335,6 +339,7 @@ zxcc_SOURCES = zxbdos.c    zxcbdos.c  zxdbdos.c   zxcc.c             \
              z80.c       z80.h      z80ops.h    cbops.h    edops.h \
              zxbdos.h    zxcc.h	    zxcbdos.h   zxdbdos.h
 
+zxcpm_SOURCES = zxcpm.c
 all: all-am
 
 .SUFFIXES:
@@ -429,6 +434,10 @@ zxcc$(EXEEXT): $(zxcc_OBJECTS) $(zxcc_DEPENDENCIES) $(EXTRA_zxcc_DEPENDENCIES)
 	@rm -f zxcc$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(zxcc_OBJECTS) $(zxcc_LDADD) $(LIBS)
 
+zxcpm$(EXEEXT): $(zxcpm_OBJECTS) $(zxcpm_DEPENDENCIES) $(EXTRA_zxcpm_DEPENDENCIES) 
+	@rm -f zxcpm$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(zxcpm_OBJECTS) $(zxcpm_LDADD) $(LIBS)
+
 zxlibr$(EXEEXT): $(zxlibr_OBJECTS) $(zxlibr_DEPENDENCIES) $(EXTRA_zxlibr_DEPENDENCIES) 
 	@rm -f zxlibr$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(zxlibr_OBJECTS) $(zxlibr_LDADD) $(LIBS)
@@ -454,6 +463,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zxc.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zxcbdos.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zxcc.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zxcpm.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zxdbdos.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zxlibr.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zxlink.Po@am__quote@ # am--include-marker
@@ -625,6 +635,7 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/zxc.Po
 	-rm -f ./$(DEPDIR)/zxcbdos.Po
 	-rm -f ./$(DEPDIR)/zxcc.Po
+	-rm -f ./$(DEPDIR)/zxcpm.Po
 	-rm -f ./$(DEPDIR)/zxdbdos.Po
 	-rm -f ./$(DEPDIR)/zxlibr.Po
 	-rm -f ./$(DEPDIR)/zxlink.Po
@@ -681,6 +692,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/zxc.Po
 	-rm -f ./$(DEPDIR)/zxcbdos.Po
 	-rm -f ./$(DEPDIR)/zxcc.Po
+	-rm -f ./$(DEPDIR)/zxcpm.Po
 	-rm -f ./$(DEPDIR)/zxdbdos.Po
 	-rm -f ./$(DEPDIR)/zxlibr.Po
 	-rm -f ./$(DEPDIR)/zxlink.Po
