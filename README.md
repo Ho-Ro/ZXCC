@@ -247,3 +247,23 @@ build the CP/M bios and the system files, and created these support scripts:
 --
 
 Martin Homuth-Rosemann, 14-Nov-2025
+
+## zxcc-0.5.8 release
+
+```
+2026-05-30 Martin Homuth-Rosemann
+
+	* zxcc-0.5.8 release
+
+	* Update documentation zxcc.html.
+
+	* Update debian build system (using checkinstall).
+
+	* Add zx80as, the equivalent of Z80AS.COM.
+	 Add zx80asm, the equivalent of Z80ASM.COM.
+	 Add CP/M build commands and zmac.com into CPM.COM.
+	 Add PL/I compiler tools.
+	 Add zxcpm that avoids zxcc argument file name translation.
+	 zxcpm calls zxcc but puts a '-' in front of all arguments:
+	 "zxcpm command a bc def" -> "zxcc command -a -bc -def"
+```

@@ -1,9 +1,9 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([zxcc],[0.5.7])
+AC_INIT([zxcc],[0.5.8])
 AC_CONFIG_SRCDIR([bin/zxcc.c])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_MACRO_DIR([m4])
-UPDATED='December 28, 2013'
+UPDATED='May 30, 2026'
 AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE
 LT_INIT
