@@ -1,9 +1,10 @@
 
-bin_PROGRAMS=zxcc zxc zxas zx80as zxlibr zxlink zxobjtohex zxcpm
+bin_PROGRAMS=zxcc zxc zxas zx80as zx80asm zxlibr zxlink zxobjtohex zxcpm
 
 zxc_SOURCES=zxc.c
 zxas_SOURCES=zxas.c
 zx80as_SOURCES=zx80as.c
+zx80asm_SOURCES=zx80asm.c
 zxlibr_SOURCES=zxlibr.c
 zxobjtohex_SOURCES=zxobjtohex.c
 zxcc_SOURCES=zxbdos.c    zxcbdos.c  zxdbdos.c   zxcc.c             \

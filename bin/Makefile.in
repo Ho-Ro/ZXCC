@@ -91,8 +91,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = zxcc$(EXEEXT) zxc$(EXEEXT) zxas$(EXEEXT) \
-	zx80as$(EXEEXT) zxlibr$(EXEEXT) zxlink$(EXEEXT) \
-	zxobjtohex$(EXEEXT) zxcpm$(EXEEXT)
+	zx80as$(EXEEXT) zx80asm$(EXEEXT) zxlibr$(EXEEXT) \
+	zxlink$(EXEEXT) zxobjtohex$(EXEEXT) zxcpm$(EXEEXT)
 subdir = bin
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
@@ -115,6 +115,9 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
+am_zx80asm_OBJECTS = zx80asm.$(OBJEXT)
+zx80asm_OBJECTS = $(am_zx80asm_OBJECTS)
+zx80asm_LDADD = $(LDADD)
 am_zxas_OBJECTS = zxas.$(OBJEXT)
 zxas_OBJECTS = $(am_zxas_OBJECTS)
 zxas_LDADD = $(LDADD)
@@ -153,7 +156,8 @@ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/z80.Po ./$(DEPDIR)/zx80as.Po \
-	./$(DEPDIR)/zxas.Po ./$(DEPDIR)/zxbdos.Po ./$(DEPDIR)/zxc.Po \
+	./$(DEPDIR)/zx80asm.Po ./$(DEPDIR)/zxas.Po \
+	./$(DEPDIR)/zxbdos.Po ./$(DEPDIR)/zxc.Po \
 	./$(DEPDIR)/zxcbdos.Po ./$(DEPDIR)/zxcc.Po \
 	./$(DEPDIR)/zxcpm.Po ./$(DEPDIR)/zxdbdos.Po \
 	./$(DEPDIR)/zxlibr.Po ./$(DEPDIR)/zxlink.Po \
@@ -177,12 +181,12 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(zx80as_SOURCES) $(zxas_SOURCES) $(zxc_SOURCES) \
-	$(zxcc_SOURCES) $(zxcpm_SOURCES) $(zxlibr_SOURCES) zxlink.c \
-	$(zxobjtohex_SOURCES)
-DIST_SOURCES = $(zx80as_SOURCES) $(zxas_SOURCES) $(zxc_SOURCES) \
-	$(zxcc_SOURCES) $(zxcpm_SOURCES) $(zxlibr_SOURCES) zxlink.c \
-	$(zxobjtohex_SOURCES)
+SOURCES = $(zx80as_SOURCES) $(zx80asm_SOURCES) $(zxas_SOURCES) \
+	$(zxc_SOURCES) $(zxcc_SOURCES) $(zxcpm_SOURCES) \
+	$(zxlibr_SOURCES) zxlink.c $(zxobjtohex_SOURCES)
+DIST_SOURCES = $(zx80as_SOURCES) $(zx80asm_SOURCES) $(zxas_SOURCES) \
+	$(zxc_SOURCES) $(zxcc_SOURCES) $(zxcpm_SOURCES) \
+	$(zxlibr_SOURCES) zxlink.c $(zxobjtohex_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -333,6 +337,7 @@ top_srcdir = @top_srcdir@
 zxc_SOURCES = zxc.c
 zxas_SOURCES = zxas.c
 zx80as_SOURCES = zx80as.c
+zx80asm_SOURCES = zx80asm.c
 zxlibr_SOURCES = zxlibr.c
 zxobjtohex_SOURCES = zxobjtohex.c
 zxcc_SOURCES = zxbdos.c    zxcbdos.c  zxdbdos.c   zxcc.c             \
@@ -422,6 +427,10 @@ zx80as$(EXEEXT): $(zx80as_OBJECTS) $(zx80as_DEPENDENCIES) $(EXTRA_zx80as_DEPENDE
 	@rm -f zx80as$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(zx80as_OBJECTS) $(zx80as_LDADD) $(LIBS)
 
+zx80asm$(EXEEXT): $(zx80asm_OBJECTS) $(zx80asm_DEPENDENCIES) $(EXTRA_zx80asm_DEPENDENCIES) 
+	@rm -f zx80asm$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(zx80asm_OBJECTS) $(zx80asm_LDADD) $(LIBS)
+
 zxas$(EXEEXT): $(zxas_OBJECTS) $(zxas_DEPENDENCIES) $(EXTRA_zxas_DEPENDENCIES) 
 	@rm -f zxas$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(zxas_OBJECTS) $(zxas_LDADD) $(LIBS)
@@ -458,6 +467,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/z80.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zx80as.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zx80asm.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zxas.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zxbdos.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zxc.Po@am__quote@ # am--include-marker
@@ -630,6 +640,7 @@ clean-am: clean-binPROGRAMS clean-generic clean-libtool mostlyclean-am
 distclean: distclean-am
 	-rm -f ./$(DEPDIR)/z80.Po
 	-rm -f ./$(DEPDIR)/zx80as.Po
+	-rm -f ./$(DEPDIR)/zx80asm.Po
 	-rm -f ./$(DEPDIR)/zxas.Po
 	-rm -f ./$(DEPDIR)/zxbdos.Po
 	-rm -f ./$(DEPDIR)/zxc.Po
@@ -687,6 +698,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/z80.Po
 	-rm -f ./$(DEPDIR)/zx80as.Po
+	-rm -f ./$(DEPDIR)/zx80asm.Po
 	-rm -f ./$(DEPDIR)/zxas.Po
 	-rm -f ./$(DEPDIR)/zxbdos.Po
 	-rm -f ./$(DEPDIR)/zxc.Po
